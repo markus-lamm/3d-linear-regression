@@ -25,10 +25,9 @@
                                 <div id="instructionsPopupContentTitle">Instructions</div>
                                 <div id="instructionsPopupContent3DModelSubtitle">Regression Plane</div>
                                 <div id="instructionsPopupContent3DModelText">
-                                    You can manipulate the 3D model by changing the 3 input values of H, A, L.<br>
-                                    H(Height) controls the starting height of the regression plane.<br>
-                                    A(Ascension) controls the rate of increase in the y-axis.<br>
-                                    L(Lean) controls the rotation along the y-axis.
+                                    You can manipulate the regression plane by changing the 3 input values either by entering a value or by using the buttons<br>
+                                    The first value controls the starting height of the regression plane.<br>
+                                    The second and third values adjusts the amount of y-axis increase for x1 and x2 axis respectively.<br>
                                 </div>
                                 <div id="instructionsPopupContentDataPointsSubtitle">Data Points</div>
                                 <div id="instructionsPopupContentDataPointsText">
@@ -64,35 +63,36 @@
                         <div id="panelTitle">Editing Panel</div>
                         <div id="regressionTitle">Regression Plane</div>
                         <div id="regressionValues">
-                            <div id="hValue">
-                                <div id="hValueTitle">H</div>
-                                <input id="hValueInput" type="number" value="0"
-                                onKeyUp="if(this.value>9999){this.value='9999';}else if(this.value<-9999){this.value='-9999';}; draw3DModel(); printDataPointsArray();"></input>
-                                <div id="hValueChange">
-                                    <div id="hValueIncrease" onclick="increaseValue(this.id); draw3DModel(); printDataPointsArray();"></div>
-                                    <div id="hValueDecrease" onclick="decreaseValue(this.id); draw3DModel(); printDataPointsArray();"></div>
+                            <div id="co1Value">
+                                <div id="co1ValueTitle">Y =</div>
+                                <input id="co1ValueInput" type="number" value="0.00"
+                                onKeyUp="if(this.value>99.00){this.value='99.00';}else if(this.value<-99.00){this.value='-99.00';}; draw3DModel(); printDataPointsArray();"></input>
+                                <div id="co1ValueChange">
+                                    <div id="co1ValueIncrease" onclick="increaseValue(this.id); draw3DModel(); printDataPointsArray();"></div>
+                                    <div id="co1ValueDecrease" onclick="decreaseValue(this.id); draw3DModel(); printDataPointsArray();"></div>
                                 </div>
                             </div>
-                            <div id="aValue">
-                                <div id="aValueTitle">A</div>
-                                <input id="aValueInput" type="number" value="10"
-                                onKeyUp="if(this.value>9999){this.value='9999';}else if(this.value<-9999){this.value='-9999';}; draw3DModel(); printDataPointsArray();"></input>
-                                <div id="aValueChange">
-                                    <div id="aValueIncrease" onclick="increaseValue(this.id); draw3DModel(); printDataPointsArray();"></div>
-                                    <div id="aValueDecrease" onclick="decreaseValue(this.id); draw3DModel(); printDataPointsArray();"></div>
+                            <div id="co2Value">
+                                <div id="co2ValueTitle">+</div>
+                                <input id="co2ValueInput" type="number" value="0.50"
+                                onKeyUp="if(this.value>99.00){this.value='99.00';}else if(this.value<-99.00){this.value='-99.00';}; draw3DModel(); printDataPointsArray();"></input>
+                                <div id="co2ValueChange">
+                                    <div id="co2ValueIncrease" onclick="increaseValue(this.id); draw3DModel(); printDataPointsArray();"></div>
+                                    <div id="co2ValueDecrease" onclick="decreaseValue(this.id); draw3DModel(); printDataPointsArray();"></div>
                                 </div>
+                                <div id="co2ValueTitle">X1</div>
                             </div>
-                            <div id="lValue">
-                                <div id="lValueTitle">L</div>
-                                <input id="lValueInput" type="number" value="100"
-                                onKeyUp="if(this.value>9999){this.value='9999';}else if(this.value<-9999){this.value='-9999';}; draw3DModel(); printDataPointsArray();"></input>
-                                <div id="lValueChange">
-                                    <div id="lValueIncrease" onclick="increaseValue(this.id); draw3DModel(); printDataPointsArray();"></div>
-                                    <div id="lValueDecrease" onclick="decreaseValue(this.id); draw3DModel(); printDataPointsArray();"></div>
+                            <div id="co3Value">
+                                <div id="co3ValueTitle">+</div>
+                                <input id="co3ValueInput" type="number" value="0.50"
+                                onKeyUp="if(this.value>99.00){this.value='99.00';}else if(this.value<-99.00){this.value='-99.00';}; draw3DModel(); printDataPointsArray();"></input>
+                                <div id="co3ValueChange">
+                                    <div id="co3ValueIncrease" onclick="increaseValue(this.id); draw3DModel(); printDataPointsArray();"></div>
+                                    <div id="co3ValueDecrease" onclick="decreaseValue(this.id); draw3DModel(); printDataPointsArray();"></div>
                                 </div>
+                                <div id="co3ValueTitle">X2</div>
                             </div>
                         </div>
-                        <div id="RegressionEquation"></div>
                         <div id="dataPointsTitle">Data Points</div>
                         <div id="dataPointsLabels">
                             <div id="dataPointsLabelsX">X1</div>

@@ -1,4 +1,4 @@
-# 3D Linear Regression Application
+# 3D Linear Regression v1.0
 
 This application is made to display and calculate a 3D Linear Regression model. It uses local html, css and js files. The application is run locally with a browser and all dependencies are local.
 

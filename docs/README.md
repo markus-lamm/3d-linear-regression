@@ -80,7 +80,7 @@ var xPlane;
 var yPlane;
 var zPlane;
 
-var modelSize = 11;
+var modelSize = 6;
 for(var i = 0; i < dataPointsArray.length; i++){
     if(dataPointsArray[i].xValue > modelSize){
         modelSize = parseInt(dataPointsArray[i].xValue) + 2;
@@ -99,49 +99,22 @@ yPlane = d3.range(0, modelSize);
 ```
 
 
-The z array is filled with a layerd for loop where the increase in z value is manipulated by "hInput", "aInput" and "lInput" which are taken from an html input. hInput determines the starting altitude of the lowest z value. aInput determines the rate of z value increase as the x,y values grow. lInput modifies the aInput values to create a lean in the model.
+The z array is filled with a layerd for loop where the increase in z value is manipulated by "co1Input", "co2Input" and "co3Input" which are taken from an html input. co1Input determines the starting altitude of the lowest z value. co2Input determines the rate of z value increase in the x value. co3Input determines the rate of z value increase in the y value.as the x,y values grow. Using different co2Input and co3Input will create a lean in the model.
 
 ```
-var hInput = parseInt(document.getElementById("hValueInput").value);
-var aInput = parseInt(document.getElementById("avalueInput").value);
-var lInput = parseInt(document.getElementById("lvalueInput").value);
+var co1Input = parseFloat(document.getElementById("co1ValueInput").value);
+var co2Input = parseFloat(document.getElementById("co2ValueInput").value);
+var co3Input = parseFloat(document.getElementById("co3ValueInput").value);
 
 zPlane = [];
 
 for (var i = 0; i < yPlane.length; i++) {
     var row = [];
     for (var j = 0; j < xPlane.length; j++) {
-    row.push(hInput + (i*0.1*aInput*(lInput*0.05)) + (j*0.05*aInput));
+    row.push((co1Input) + (j*co2Input) + (i*co3Input));
     }
     zPlane.push(row);
 }
-```
-
-
-The coefficient in the model which describes the relation between the x,y,z coordinated and there placement in the model is determined by the following function. The function was created by generative ai and attempts to recreate the function in a more developer friendly code have not been successfull.
-
-```
-// Flatten the y array into a 1D array
-const yFlat = zPlane.flat();
-
-// Create a matrix of input data
-const X = [];
-for (let i = 0; i < xPlane.length; i++) {
-    for (let j = 0; j < yPlane.length; j++) {
-        X.push([1, xPlane[i], yPlane[j], xPlane[i]**2, xPlane[i]*yPlane[j], yPlane[j]**2]);
-    }
-}
-
-// Perform polynomial regression using the normal equations method
-const Xt = numeric.transpose(X);
-const XtX = numeric.dot(Xt, X);
-const XtXInv = numeric.inv(XtX);
-const XtY = numeric.dot(Xt, yFlat);
-const beta = numeric.dot(XtXInv, XtY);
-
-// Create the regression equation
-const regressionEquation = `Y = ${Math.floor(beta[0].toFixed(0))} + ${beta[1].toFixed(2)} X1 + ${beta[2].toFixed(2)} X2`;
-document.getElementById("regression-equation").innerHTML = regressionEquation;
 ```
 
 

@@ -155,8 +155,8 @@ var yPlane;
 var zPlane;
 
 function updateRegressionPlaneValues(){
-    //Default size is 8(0-7) but if any datapoint x or y coordinate exceed that the model grows to encompass it
-    var modelSize = 8;
+    //Default size is 6(0-5) but if any datapoint x or y coordinate exceed that the model grows to encompass it
+    var modelSize = 6;
     for(var i = 0; i < dataPointsArray.length; i++){
         if(dataPointsArray[i].xValue > modelSize){
             modelSize = parseInt(dataPointsArray[i].xValue) + 2;
@@ -168,43 +168,19 @@ function updateRegressionPlaneValues(){
 
     xPlane = d3.range(0, modelSize);
     yPlane = d3.range(0, modelSize);
-    var hInput = parseInt(document.getElementById("hValueInput").value);
-    var aInput = parseInt(document.getElementById("aValueInput").value);
-    var lInput = parseInt(document.getElementById("lValueInput").value);
+    var co1Input = parseFloat(document.getElementById("co1ValueInput").value);
+    var co2Input = parseFloat(document.getElementById("co2ValueInput").value);
+    var co3Input = parseFloat(document.getElementById("co3ValueInput").value);
     
     zPlane = [];
     
     for (var i = 0; i < yPlane.length; i++) {
       var row = [];
       for (var j = 0; j < xPlane.length; j++) {
-        row.push((hInput*0.01) + (i*0.1*aInput*(lInput*0.001)) + (j*0.01*aInput));
+        row.push((co1Input) + (j*co2Input) + (i*co3Input));
       }
       zPlane.push(row);
     }
-
-    ///Generates the coeffcient regression plane equasion
-
-    // Flatten the y array into a 1D array
-    const yFlat = zPlane.flat();
-
-    // Create a matrix of input data
-    const X = [];
-    for (let i = 0; i < xPlane.length; i++) {
-        for (let j = 0; j < yPlane.length; j++) {
-            X.push([1, xPlane[i], yPlane[j], xPlane[i]**2, xPlane[i]*yPlane[j], yPlane[j]**2]);
-        }
-    }
-
-    // Perform polynomial regression using the normal equations method
-    const Xt = numeric.transpose(X);
-    const XtX = numeric.dot(Xt, X);
-    const XtXInv = numeric.inv(XtX);
-    const XtY = numeric.dot(Xt, yFlat);
-    const beta = numeric.dot(XtXInv, XtY);
-
-    // Create the regression equation
-    const regressionEquation = `Y = ${beta[0].toFixed(2)} + ${beta[2].toFixed(2)} X1 + ${beta[1].toFixed(2)} X2`;
-    document.getElementById("RegressionEquation").innerHTML = regressionEquation;
 }
 
 draw3DModel();
@@ -315,44 +291,44 @@ function draw3DModel(){
 /* Unmodified code is sourced at https://stackoverflow.com/questions/9186346/javascript-onclick-increment-number */
 function increaseValue(input){
     var element;
-    if (input == "hValueIncrease"){
-        element = "hValueInput";
+    if (input == "co1ValueIncrease"){
+        element = "co1ValueInput";
     }
-    else if (input == "aValueIncrease"){
-        element = "aValueInput";
+    else if (input == "co2ValueIncrease"){
+        element = "co2ValueInput";
     }
-    else if (input == "lValueIncrease"){
-        element = "lValueInput";
+    else if (input == "co3ValueIncrease"){
+        element = "co3ValueInput";
     }
-    var value = parseInt(document.getElementById(element).value);
-    if (value < 9999 ){
-        value ++;
+    var value = parseFloat(document.getElementById(element).value);
+    if (value < 99.00 ){
+        value = (value + 0.01).toFixed(2);
         document.getElementById(element).value = value;
     }
     else{
-        document.getElementById(element).value = 9999;
+        document.getElementById(element).value = (99.00).toFixed(2);
     }
 }
 
 /* Unmodified code is sourced at https://stackoverflow.com/questions/9186346/javascript-onclick-increment-number */
 function decreaseValue(input){
     var element;
-    if (input == "hValueDecrease"){
-        element = "hValueInput";
+    if (input == "co1ValueDecrease"){
+        element = "co1ValueInput";
     }
-    else if (input == "aValueDecrease"){
-        element = "aValueInput";
+    else if (input == "co2ValueDecrease"){
+        element = "co2ValueInput";
     }
-    else if (input == "lValueDecrease"){
-        element = "lValueInput";
+    else if (input == "co3ValueDecrease"){
+        element = "co3ValueInput";
     }
-    var value = parseInt(document.getElementById(element).value);
-    if (value > -9999){
-        value --;
+    var value = parseFloat(document.getElementById(element).value);
+    if (value > -99.00){
+        value = (value - 0.01).toFixed(2);
         document.getElementById(element).value = value;
     }
     else{
-        document.getElementById(element).value = -9999;
+        document.getElementById(element).value = (-99.00).toFixed(2);
     }
 }
 
