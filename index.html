@@ -67,32 +67,32 @@
                             <div id="hValue">
                                 <div id="hValueTitle">H</div>
                                 <input id="hValueInput" type="number" value="0"
-                                onKeyUp="if(this.value>999){this.value='999';}else if(this.value<-999){this.value='-999';}; draw3DModel()"></input>
+                                onKeyUp="if(this.value>9999){this.value='9999';}else if(this.value<-9999){this.value='-9999';}; draw3DModel(); printDataPointsArray();"></input>
                                 <div id="hValueChange">
                                     <div id="hValueIncrease" onclick="increaseValue(this.id); draw3DModel(); printDataPointsArray();"></div>
                                     <div id="hValueDecrease" onclick="decreaseValue(this.id); draw3DModel(); printDataPointsArray();"></div>
                                 </div>
                             </div>
-                            <div id="avalue">
-                                <div id="avalueTitle">A</div>
-                                <input id="avalueInput" type="number" value="10"
-                                onKeyUp="if(this.value>99){this.value='99';}else if(this.value<-99){this.value='-99';}; draw3DModel()"></input>
-                                <div id="avalueChange">
-                                    <div id="avalueIncrease" onclick="increaseValue(this.id); draw3DModel(); printDataPointsArray();"></div>
-                                    <div id="avalueDecrease" onclick="decreaseValue(this.id); draw3DModel(); printDataPointsArray();"></div>
+                            <div id="aValue">
+                                <div id="aValueTitle">A</div>
+                                <input id="aValueInput" type="number" value="10"
+                                onKeyUp="if(this.value>9999){this.value='9999';}else if(this.value<-9999){this.value='-9999';}; draw3DModel(); printDataPointsArray();"></input>
+                                <div id="aValueChange">
+                                    <div id="aValueIncrease" onclick="increaseValue(this.id); draw3DModel(); printDataPointsArray();"></div>
+                                    <div id="aValueDecrease" onclick="decreaseValue(this.id); draw3DModel(); printDataPointsArray();"></div>
                                 </div>
                             </div>
-                            <div id="lvalue">
-                                <div id="lvalueTitle">L</div>
-                                <input id="lvalueInput" type="number" value="10"
-                                onKeyUp="if(this.value>99){this.value='99';}else if(this.value<-99){this.value='-99';}; draw3DModel()"></input>
-                                <div id="lvalueChange">
-                                    <div id="lvalueIncrease" onclick="increaseValue(this.id); draw3DModel(); printDataPointsArray();"></div>
-                                    <div id="lvalueDecrease" onclick="decreaseValue(this.id); draw3DModel(); printDataPointsArray();"></div>
+                            <div id="lValue">
+                                <div id="lValueTitle">L</div>
+                                <input id="lValueInput" type="number" value="100"
+                                onKeyUp="if(this.value>9999){this.value='9999';}else if(this.value<-9999){this.value='-9999';}; draw3DModel(); printDataPointsArray();"></input>
+                                <div id="lValueChange">
+                                    <div id="lValueIncrease" onclick="increaseValue(this.id); draw3DModel(); printDataPointsArray();"></div>
+                                    <div id="lValueDecrease" onclick="decreaseValue(this.id); draw3DModel(); printDataPointsArray();"></div>
                                 </div>
                             </div>
                         </div>
-                        <div id="regression-equation"></div>
+                        <div id="RegressionEquation"></div>
                         <div id="dataPointsTitle">Data Points</div>
                         <div id="dataPointsLabels">
                             <div id="dataPointsLabelsX">X1</div>

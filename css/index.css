@@ -196,22 +196,22 @@ body{
     margin: 3mm;
 }
 #hValue,
-#avalue,
-#lvalue{
+#aValue,
+#lValue{
     display: flex;
     justify-content: center;
     align-items: center;
 }
 #hValueTitle,
-#avalueTitle,
-#lvalueTitle{
+#aValueTitle,
+#lValueTitle{
     margin-left: 3mm;
     margin-right: 2mm;
     font-size: large;
 }
 #hValueInput,
-#avalueInput,
-#lvalueInput{
+#aValueInput,
+#lValueInput{
     display: inline-block;
     text-align: center;
     background-color: #5872FD;
@@ -228,15 +228,15 @@ input[type=number]::-webkit-outer-spin-button {
   margin: 0; 
 }
 #hValueChange,
-#avalueChange,
-#lvalueChange{
+#aValueChange,
+#lValueChange{
     display: flex;
     flex-direction: column;
     margin-left: 1mm;
 }
 #hValueIncrease,
-#avalueIncrease,
-#lvalueIncrease{
+#aValueIncrease,
+#lValueIncrease{
     background-color: #5872FD;
     height: 3.5mm;
     width: 8mm;
@@ -248,18 +248,18 @@ input[type=number]::-webkit-outer-spin-button {
     background-repeat: no-repeat;
 }
 #hValueIncrease:hover,
-#avalueIncrease:hover,
-#lvalueIncrease:hover{
+#aValueIncrease:hover,
+#lValueIncrease:hover{
     cursor: pointer;
 }
 #hValueIncrease:active,
-#avalueIncrease:active,
-#lvalueIncrease:active{
+#aValueIncrease:active,
+#lValueIncrease:active{
     background-color: #364aba;
 }
 #hValueDecrease,
-#avalueDecrease,
-#lvalueDecrease{
+#aValueDecrease,
+#lValueDecrease{
     background-color: #5872FD;
     height: 3.5mm;
     width: 8mm;
@@ -270,13 +270,13 @@ input[type=number]::-webkit-outer-spin-button {
     background-repeat: no-repeat;
 }
 #hValueDecrease:hover,
-#avalueDecrease:hover,
-#lvalueDecrease:hover{
+#aValueDecrease:hover,
+#lValueDecrease:hover{
     cursor: pointer;
 }
 #hValueDecrease:active,
-#avalueDecrease:active,
-#lvalueDecrease:active{
+#aValueDecrease:active,
+#lValueDecrease:active{
     background-color: #364aba;
 }
 #dataPointsTitle{
@@ -445,7 +445,7 @@ div[id^="dataPointsCurrentItem"]{
 #dataPointsTotalFieldRes2{
     margin-left: 6mm;
 }
-#regression-equation{
+#RegressionEquation{
     font-size: 20px;
     display: flex;
     justify-content: center;

@@ -16,6 +16,6 @@ The application is run entirely locally and you only need access to a browser. D
 
 # Limitations
 
-The data points cannot exceed 700,700,700 on the different axis (x1, x2, y) and the H(Height), A(Ascension), L(Lean) values are also limited. This is because the application struggles to present values larger than this as the application must calculate and place each individual spot coordinate in the regression plane. 
+The data points cannot exceed 700,700,700 on the different axis (x1, x2, y). This is because the application struggles to present values larger than this as the application must calculate and place each individual spot coordinate in the regression plane. 
 
 There is also no way to store any data in the app which means the data must be manually fed each time.

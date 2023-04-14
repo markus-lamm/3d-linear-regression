@@ -61,11 +61,7 @@ function calculateRes(xValue, yValue, arrayLocation){
     updateRegressionPlaneValues();
 
     //The location of the compared datapoints zValue is compared to the regression plane´s value at the provided x, y coordinates
-    var resValue = dataPointsArray[arrayLocation].zValue - zPlane[xValue][yValue];
-
-    console.log(resValue);//debugging
-    console.log(dataPointsArray[arrayLocation].zValue);//debugging
-    console.log(zPlane[xValue][yValue]);//debugging
+    var resValue = dataPointsArray[arrayLocation].zValue - zPlane[yValue][xValue];
 
     resValue = resValue.toFixed(2);
 
@@ -173,15 +169,15 @@ function updateRegressionPlaneValues(){
     xPlane = d3.range(0, modelSize);
     yPlane = d3.range(0, modelSize);
     var hInput = parseInt(document.getElementById("hValueInput").value);
-    var aInput = parseInt(document.getElementById("avalueInput").value);
-    var lInput = parseInt(document.getElementById("lvalueInput").value);
+    var aInput = parseInt(document.getElementById("aValueInput").value);
+    var lInput = parseInt(document.getElementById("lValueInput").value);
     
     zPlane = [];
     
     for (var i = 0; i < yPlane.length; i++) {
       var row = [];
       for (var j = 0; j < xPlane.length; j++) {
-        row.push((hInput*0.1) + (i*0.1*aInput*(lInput*0.05)) + (j*0.05*aInput));
+        row.push((hInput*0.01) + (i*0.1*aInput*(lInput*0.001)) + (j*0.01*aInput));
       }
       zPlane.push(row);
     }
@@ -207,8 +203,8 @@ function updateRegressionPlaneValues(){
     const beta = numeric.dot(XtXInv, XtY);
 
     // Create the regression equation
-    const regressionEquation = `Y = ${beta[0].toFixed(1)} + ${beta[2].toFixed(2)} X1 + ${beta[1].toFixed(2)} X2`;
-    document.getElementById("regression-equation").innerHTML = regressionEquation;
+    const regressionEquation = `Y = ${beta[0].toFixed(2)} + ${beta[2].toFixed(2)} X1 + ${beta[1].toFixed(2)} X2`;
+    document.getElementById("RegressionEquation").innerHTML = regressionEquation;
 }
 
 draw3DModel();
@@ -322,28 +318,19 @@ function increaseValue(input){
     if (input == "hValueIncrease"){
         element = "hValueInput";
     }
-    else if (input == "avalueIncrease"){
-        element = "avalueInput";
+    else if (input == "aValueIncrease"){
+        element = "aValueInput";
     }
-    else if (input == "lvalueIncrease"){
-        element = "lvalueInput";
+    else if (input == "lValueIncrease"){
+        element = "lValueInput";
     }
     var value = parseInt(document.getElementById(element).value);
-    if(element == "hValueInput" && value < 999){
-        value ++;
-        document.getElementById(element).value = value;
-    }
-    else if (value < 99 ){
+    if (value < 9999 ){
         value ++;
         document.getElementById(element).value = value;
     }
     else{
-        if(element == "hValueInput"){
-            document.getElementById(element).value = 999;
-        }
-        else{
-            document.getElementById(element).value = 99;
-        }
+        document.getElementById(element).value = 9999;
     }
 }
 
@@ -353,28 +340,19 @@ function decreaseValue(input){
     if (input == "hValueDecrease"){
         element = "hValueInput";
     }
-    else if (input == "avalueDecrease"){
-        element = "avalueInput";
+    else if (input == "aValueDecrease"){
+        element = "aValueInput";
     }
-    else if (input == "lvalueDecrease"){
-        element = "lvalueInput";
+    else if (input == "lValueDecrease"){
+        element = "lValueInput";
     }
     var value = parseInt(document.getElementById(element).value);
-    if(element == "hValueInput" && value < -999){
-        value ++;
-        document.getElementById(element).value = value;
-    }    
-    else if (value > -99){
+    if (value > -9999){
         value --;
         document.getElementById(element).value = value;
     }
     else{
-        if(element == "hValueInput"){
-            document.getElementById(element).value = -999;
-        }
-        else{
-            document.getElementById(element).value = -99;
-        }
+        document.getElementById(element).value = -9999;
     }
 }
 
