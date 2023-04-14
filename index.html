@@ -27,20 +27,19 @@
                                 <div id="instructionsPopupContent3DModelText">
                                     You can manipulate the 3D model by changing the 3 input values of H, A, L.<br>
                                     H(Height) controls the starting height of the regression plane.<br>
-                                    A(Ascension) controls the rate of increase in the z-axis.<br>
-                                    L(Lean) controls the rotation along the z-axis.
+                                    A(Ascension) controls the rate of increase in the y-axis.<br>
+                                    L(Lean) controls the rotation along the y-axis.
                                 </div>
                                 <div id="instructionsPopupContentDataPointsSubtitle">Data Points</div>
                                 <div id="instructionsPopupContentDataPointsText">
                                     You can freely add or remove existing data points in the editing panel.<br>
-                                    Enter the x, y, z coordinates and press the green "+" to add a datapoint.<br>
+                                    Enter the x1, x2, y coordinates and press the green "+" to add a datapoint.<br>
                                     The datapoint will then appear in the list and in the 3D model.<br>
                                     To remove a data point simply press the red "x" next to it.<br>
                                     To the right of the coordinates each data points residuals are displayed.<br>
-                                    Res is the distance from the z-axis of the data point to the z-axis of the regression plane in the using the same x, y coordinates.<br>
+                                    Res is the distance from the y-axis of the data point to the y-axis of the regression plane in the using the same x1, x2 coordinates.<br>
                                     Res<sup>2</sup> is the residual value squared.<br>
                                     At the bottom of the list the sum of all Res<sup>2</sup> values are displayed.<br>
-                                    The lower the number the closer the regression plane accuratly displays the correlation between the x, y, z axis.
                                 </div>
                             </div>
                             <div id="instructionsPopupContentRight">
@@ -68,7 +67,7 @@
                             <div id="hValue">
                                 <div id="hValueTitle">H</div>
                                 <input id="hValueInput" type="number" value="0"
-                                onKeyUp="if(this.value>99){this.value='99';}else if(this.value<-99){this.value='-99';}; draw3DModel()"></input>
+                                onKeyUp="if(this.value>999){this.value='999';}else if(this.value<-999){this.value='-999';}; draw3DModel()"></input>
                                 <div id="hValueChange">
                                     <div id="hValueIncrease" onclick="increaseValue(this.id); draw3DModel(); printDataPointsArray();"></div>
                                     <div id="hValueDecrease" onclick="decreaseValue(this.id); draw3DModel(); printDataPointsArray();"></div>

@@ -159,8 +159,8 @@ var yPlane;
 var zPlane;
 
 function updateRegressionPlaneValues(){
-    //Default size is 11(0-10) but if any datapoint x or y coordinate exceed that the model grows to encompass it
-    var modelSize = 11;
+    //Default size is 8(0-7) but if any datapoint x or y coordinate exceed that the model grows to encompass it
+    var modelSize = 8;
     for(var i = 0; i < dataPointsArray.length; i++){
         if(dataPointsArray[i].xValue > modelSize){
             modelSize = parseInt(dataPointsArray[i].xValue) + 2;
@@ -181,7 +181,7 @@ function updateRegressionPlaneValues(){
     for (var i = 0; i < yPlane.length; i++) {
       var row = [];
       for (var j = 0; j < xPlane.length; j++) {
-        row.push(hInput + (i*0.1*aInput*(lInput*0.05)) + (j*0.05*aInput));
+        row.push((hInput*0.1) + (i*0.1*aInput*(lInput*0.05)) + (j*0.05*aInput));
       }
       zPlane.push(row);
     }
@@ -207,7 +207,7 @@ function updateRegressionPlaneValues(){
     const beta = numeric.dot(XtXInv, XtY);
 
     // Create the regression equation
-    const regressionEquation = `Y = ${Math.floor(beta[0].toFixed(0))} + ${beta[1].toFixed(2)} X1 + ${beta[2].toFixed(2)} X2`;
+    const regressionEquation = `Y = ${beta[0].toFixed(1)} + ${beta[2].toFixed(2)} X1 + ${beta[1].toFixed(2)} X2`;
     document.getElementById("regression-equation").innerHTML = regressionEquation;
 }
 
@@ -329,12 +329,21 @@ function increaseValue(input){
         element = "lvalueInput";
     }
     var value = parseInt(document.getElementById(element).value);
-    if (value < 99){
+    if(element == "hValueInput" && value < 999){
+        value ++;
+        document.getElementById(element).value = value;
+    }
+    else if (value < 99 ){
         value ++;
         document.getElementById(element).value = value;
     }
     else{
-        document.getElementById(element).value = 99;
+        if(element == "hValueInput"){
+            document.getElementById(element).value = 999;
+        }
+        else{
+            document.getElementById(element).value = 99;
+        }
     }
 }
 
@@ -351,12 +360,21 @@ function decreaseValue(input){
         element = "lvalueInput";
     }
     var value = parseInt(document.getElementById(element).value);
-    if (value > -99){
+    if(element == "hValueInput" && value < -999){
+        value ++;
+        document.getElementById(element).value = value;
+    }    
+    else if (value > -99){
         value --;
         document.getElementById(element).value = value;
     }
     else{
-        document.getElementById(element).value = -99;
+        if(element == "hValueInput"){
+            document.getElementById(element).value = -999;
+        }
+        else{
+            document.getElementById(element).value = -99;
+        }
     }
 }
 
