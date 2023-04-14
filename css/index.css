@@ -1,0 +1,452 @@
+body{
+    display: flex;
+    background-color: #5872FD;
+    justify-content: center;
+    font-size: x-large;
+    font-family: 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+
+    /* This code forbids text selection */
+    -webkit-user-select: none;  
+    -moz-user-select: none;    
+    -ms-user-select: none;      
+    user-select: none;
+}
+#home{
+  display: flex;  
+  justify-content: center;
+  width: 95vw;
+  height: 95vh;
+}
+#main{
+    display: flex;
+    flex-direction: column;
+}
+#menu{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    margin: 3mm;
+    margin-top: 0;
+    margin-bottom: 0;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 2px;
+}
+#menuLeft{
+    display: flex;
+    align-items: center;
+}
+#icon{
+    margin: 10mm;
+    margin-top: 5mm;
+    margin-bottom: 5mm;
+}
+#iconImage{
+    width: 120px;
+    height: 120px;
+}
+#name{
+    font-size: xx-large;
+}
+#menuRight{
+    display: flex;
+}
+#instructions{
+    margin: 2cm;
+}
+#instructions:hover{
+    color: #5872FD;
+    transition: 200ms;
+    cursor: pointer;
+}
+#instructionsPopup{
+    display: none;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    position: fixed;
+}
+#instructionsPopupContent{
+    display: flex;
+    background-color: rgb(233, 233, 233);
+    border-radius: 2px;
+    margin: 15% auto;
+    margin-top: 250px;
+    height: fit-content;
+    width: fit-content;
+}
+#instructionsPopupContentLeft{
+    flex-direction: column;
+    width: 90%;
+}
+#instructionsPopupContentRight{
+    display: flex;
+    width: 10%;
+    justify-content: center;
+}
+#instructionsPopupContentRightBtn{
+    margin-top: 25%;
+}
+#instructionsPopupContentRightBtn:hover{
+    cursor: pointer;
+}
+#instructionsPopupContentTitle{
+    margin: 5%;
+    margin-bottom: 0;
+    font-size: xx-large;
+}
+#instructionsPopupContent3DModelSubtitle,
+#instructionsPopupContentRegressionSurfaceSubtitle,
+#instructionsPopupContentDataPointsSubtitle{
+    font-size: x-large;
+    margin: 5%;
+    margin-bottom: 0;
+}
+#instructionsPopupContent3DModelText,
+#instructionsPopupContentRegressionSurfaceText,
+#instructionsPopupContentDataPointsText{
+    font-size: large;
+    color: rgb(80, 80, 80);
+    margin-left: 5%;
+    margin-top: 2%;
+    margin-bottom: 5%;
+}
+#reset{
+    margin: 2cm;
+    margin-right: 3cm;
+}
+#reset:hover{
+    color: #5872FD;
+    transition: 200ms;
+    cursor: pointer;
+}
+#bars{
+    display: flex;
+}
+#leftBar{
+    display: flex;
+    flex-direction: column;
+}
+#model{
+    background-color: black;
+    aspect-ratio: 1/1;
+    min-height: 790px;
+    height: 70vh;
+    margin: 3mm;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 2px;
+}
+#bottomBar{
+    display: flex;
+    align-items: center;
+    background-color: white;
+    min-width: 790px;
+    min-height: 150px;
+    margin: 3mm;
+    margin-bottom: 0;
+    margin-top: 0;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 2px;  
+}
+#bottomBarLogo{
+    margin-left: 1cm;
+}
+#hvLogoImage{
+    width: 200px;
+    height: 100px;
+}
+#bottomBarTitle{
+    margin-left: 2cm;
+    font-size: large;
+    color: white;
+}
+#bottomBarTitle:hover{
+    color: black;
+    transition: 1000ms;
+}
+#rightBar{
+    display: flex;
+}
+#panel{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    width: 400px;
+    min-height: calc(150px + 790px + 3mm);
+    height: calc(150px + 70vh + 3mm);
+    margin: 3mm;
+    margin-left: 0;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 2px;
+}
+#panelTitle{
+    margin: 5mm;
+}
+#regressionTitle{
+    margin: 5mm;
+    font-size: large;
+}
+#regressionValues{
+    display: flex;
+    margin: 3mm;
+}
+#hValue,
+#avalue,
+#lvalue{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#hValueTitle,
+#avalueTitle,
+#lvalueTitle{
+    margin-left: 3mm;
+    margin-right: 2mm;
+    font-size: large;
+}
+#hValueInput,
+#avalueInput,
+#lvalueInput{
+    display: inline-block;
+    text-align: center;
+    background-color: #5872FD;
+    width: 1.2cm;
+    height: 8mm;
+    border-radius: 2px;
+    font-size: large;
+    border: 0;
+}
+/* This code will remove the inner buttons on all number input fields*/
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+#hValueChange,
+#avalueChange,
+#lvalueChange{
+    display: flex;
+    flex-direction: column;
+    margin-left: 1mm;
+}
+#hValueIncrease,
+#avalueIncrease,
+#lvalueIncrease{
+    background-color: #5872FD;
+    height: 3.5mm;
+    width: 8mm;
+    border-radius: 2px;
+    margin-bottom: 1mm;
+    background-image: url("../img/arrowUp.png");
+    background-position: center;
+    background-size: 10px;
+    background-repeat: no-repeat;
+}
+#hValueIncrease:hover,
+#avalueIncrease:hover,
+#lvalueIncrease:hover{
+    cursor: pointer;
+}
+#hValueIncrease:active,
+#avalueIncrease:active,
+#lvalueIncrease:active{
+    background-color: #364aba;
+}
+#hValueDecrease,
+#avalueDecrease,
+#lvalueDecrease{
+    background-color: #5872FD;
+    height: 3.5mm;
+    width: 8mm;
+    border-radius: 2px;
+    background-image: url("../img/arrowDown.png");
+    background-position: center;
+    background-size: 10px;
+    background-repeat: no-repeat;
+}
+#hValueDecrease:hover,
+#avalueDecrease:hover,
+#lvalueDecrease:hover{
+    cursor: pointer;
+}
+#hValueDecrease:active,
+#avalueDecrease:active,
+#lvalueDecrease:active{
+    background-color: #364aba;
+}
+#dataPointsTitle{
+    margin: 5mm;
+    font-size: large;
+}
+#dataPointsLabels{
+    display: flex;
+    font-size: large;
+    justify-content: start;
+    align-items: start;
+    margin-left: 6.5mm;
+}
+#dataPointsLabelsX{
+    margin-right: 8mm;
+    display: flex;
+}
+#dataPointsLabelsY{
+    margin-right: 9.5mm;
+    display: flex;
+}
+#dataPointsLabelsZ,
+#dataPointsLabelsRes,
+#dataPointsLabelsRes2{
+    margin-right: 11mm;
+    display: flex;
+}
+#dataPointsAdd{
+    display: flex;
+}
+#dataPointsAddField{
+    display: flex;
+    width: 80mm;
+    height: 8mm;
+    margin: 3mm;
+    background-color: rgb(233, 233, 233);
+    border-radius: 2px;
+}
+#dataPointsAddFieldX,
+#dataPointsAddFieldY,
+#dataPointsAddFieldZ{
+    display: inline-block;
+    text-align: center;
+    font-size: large;
+    margin: 0.5mm;
+    margin-right: 3mm;
+    margin-left: 1mm;
+    width: 9mm;
+    height: 6.5mm;
+    background-color: white;
+    border-radius: 2px;
+    border: 0;
+}
+#dataPointsAddButton{
+    display: inline-block;
+    text-align: center;
+    width: 1cm;
+    height: 8mm;
+    margin: 3mm;
+    margin-right: 8mm;
+    margin-left: 0;
+    background-color: #6BC569;
+    border-radius: 2px;
+    justify-content: center;
+    align-items: center;
+}
+#dataPointsAddButton:hover{
+    cursor: pointer;
+}
+#dataPointsAddButton:active{
+    background-color: #369434;
+}
+#dataPointsCurrent{
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+
+}
+#dataPointsCurrent::-webkit-scrollbar{
+    width: 10px;
+}
+#dataPointsCurrent::-webkit-scrollbar-track{
+    background: white;
+    border-radius: 2px;
+    
+}
+#dataPointsCurrent::-webkit-scrollbar-thumb{
+    background-color: rgb(233, 233, 233);
+    border-radius: 2px;
+}
+div[id^="dataPointsCurrentItem"]{
+    display: flex;
+}
+#dataPointsCurrentField{
+    display: flex;
+    font-family: sans-serif;
+    font-weight: normal;
+    width: 80mm;
+    height: 8mm;
+    margin: 3mm;
+    background-color: rgb(233, 233, 233);
+    border-radius: 2px;
+}
+#dataPointsCurrentFieldX,
+#dataPointsCurrentFieldY,
+#dataPointsCurrentFieldZ,
+#dataPointsCurrentFieldRes,
+#dataPointsCurrentFieldRes2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: large;
+    margin: 0.5mm;
+    margin-right: 3mm;
+    margin-left: 2mm;
+    width: 9mm;
+    height: 6.5mm;
+    border-radius: 2px;
+    border: 0;
+}
+#dataPointsCurrentFieldRes2{
+    margin-left: 8mm;
+}
+#dataPointsRemoveButton{
+    display: inline-block;
+    text-align: center;
+    width: 1cm;
+    height: 8mm;
+    margin: 3mm;
+    margin-left: 0;
+    background-color: #C56969;
+    border-radius: 2px;
+}
+#dataPointsRemoveButton:hover{
+    cursor: pointer;
+}
+#dataPointsRemoveButton:active{
+    background-color: #943e3e;
+}
+#dataPointsTotal{
+    display: flex;
+}
+#dataPointsTotalField{
+    display: flex;
+    width: 80mm;
+    height: 8mm;
+    margin: 3mm;
+    background-color: rgb(233, 233, 233);
+    border-radius: 2px;
+}
+#dataPointsTotalFieldRes,
+#dataPointsTotalFieldRes2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: large;
+    margin: 1mm;
+    width: 12mm;
+    height: 6.5mm;
+    border-radius: 2px;
+    border: 0;
+}
+#dataPointsTotalFieldRes{
+    margin-left: 44mm;
+}
+#dataPointsTotalFieldRes2{
+    margin-left: 6mm;
+}
+#regression-equation{
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+}

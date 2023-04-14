@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>3D Linear Regression</title>
+    <link rel="icon" href="img/appIcon.png"/>
+    <link rel="stylesheet" href="css/index.css" />
+    <script src="js/d3.v7.min.js"></script>
+    <script src="js/plotly-2.18.2.min.js"></script>
+    <script src="js/numeric-1.2.6.min.js"></script>
+  </head>
+  <body>
+    <div id="home">
+        <div id="main">
+            <div id="menu">
+                <div id="menuLeft">
+                    <div id="icon" ><img src="img/appIcon.png" id="iconImage" draggable="false"></div>
+                    <div id="name">3D Linear Regression</div>                    
+                </div>
+                <div id="menuRight">
+                    <div id="instructions" onclick="openInstructions()">Instructions</div>
+                    <div id="instructionsPopup">
+                        <div id="instructionsPopupContent">
+                            <div id="instructionsPopupContentLeft">
+                                <div id="instructionsPopupContentTitle">Instructions</div>
+                                <div id="instructionsPopupContent3DModelSubtitle">Regression Plane</div>
+                                <div id="instructionsPopupContent3DModelText">
+                                    You can manipulate the 3D model by changing the 3 input values of H, A, L.<br>
+                                    H(Height) controls the starting height of the regression plane.<br>
+                                    A(Ascension) controls the rate of increase in the z-axis.<br>
+                                    L(Lean) controls the rotation along the z-axis.
+                                </div>
+                                <div id="instructionsPopupContentDataPointsSubtitle">Data Points</div>
+                                <div id="instructionsPopupContentDataPointsText">
+                                    You can freely add or remove existing data points in the editing panel.<br>
+                                    Enter the x, y, z coordinates and press the green "+" to add a datapoint.<br>
+                                    The datapoint will then appear in the list and in the 3D model.<br>
+                                    To remove a data point simply press the red "x" next to it.<br>
+                                    To the right of the coordinates each data points residuals are displayed.<br>
+                                    Res is the distance from the z-axis of the data point to the z-axis of the regression plane in the using the same x, y coordinates.<br>
+                                    Res<sup>2</sup> is the residual value squared.<br>
+                                    At the bottom of the list the sum of all Res<sup>2</sup> values are displayed.<br>
+                                    The lower the number the closer the regression plane accuratly displays the correlation between the x, y, z axis.
+                                </div>
+                            </div>
+                            <div id="instructionsPopupContentRight">
+                                <div id="instructionsPopupContentRightBtn" onclick="closeInstructions()">X</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="reset" onclick="window.location.reload();">Reset</div>
+                </div>
+            </div>
+
+            <div id="bars">
+                <div id="leftBar">
+                    <div id="model"></div>
+                    <div id="bottomBar">
+                        <div id="bottomBarLogo"><img src="img/hvLogo.png" id="hvLogoImage" draggable="false"></div>
+                        <div id="bottomBarTitle">Created by Markus Lamm & Haashim Mohamad</div>
+                    </div>                    
+                </div>
+                <div id="RightBar">
+                    <div id="panel">
+                        <div id="panelTitle">Editing Panel</div>
+                        <div id="regressionTitle">Regression Plane</div>
+                        <div id="regressionValues">
+                            <div id="hValue">
+                                <div id="hValueTitle">H</div>
+                                <input id="hValueInput" type="number" value="0"
+                                onKeyUp="if(this.value>99){this.value='99';}else if(this.value<-99){this.value='-99';}; draw3DModel()"></input>
+                                <div id="hValueChange">
+                                    <div id="hValueIncrease" onclick="increaseValue(this.id); draw3DModel(); printDataPointsArray();"></div>
+                                    <div id="hValueDecrease" onclick="decreaseValue(this.id); draw3DModel(); printDataPointsArray();"></div>
+                                </div>
+                            </div>
+                            <div id="avalue">
+                                <div id="avalueTitle">A</div>
+                                <input id="avalueInput" type="number" value="10"
+                                onKeyUp="if(this.value>99){this.value='99';}else if(this.value<-99){this.value='-99';}; draw3DModel()"></input>
+                                <div id="avalueChange">
+                                    <div id="avalueIncrease" onclick="increaseValue(this.id); draw3DModel(); printDataPointsArray();"></div>
+                                    <div id="avalueDecrease" onclick="decreaseValue(this.id); draw3DModel(); printDataPointsArray();"></div>
+                                </div>
+                            </div>
+                            <div id="lvalue">
+                                <div id="lvalueTitle">L</div>
+                                <input id="lvalueInput" type="number" value="10"
+                                onKeyUp="if(this.value>99){this.value='99';}else if(this.value<-99){this.value='-99';}; draw3DModel()"></input>
+                                <div id="lvalueChange">
+                                    <div id="lvalueIncrease" onclick="increaseValue(this.id); draw3DModel(); printDataPointsArray();"></div>
+                                    <div id="lvalueDecrease" onclick="decreaseValue(this.id); draw3DModel(); printDataPointsArray();"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="regression-equation"></div>
+                        <div id="dataPointsTitle">Data Points</div>
+                        <div id="dataPointsLabels">
+                            <div id="dataPointsLabelsX">X1</div>
+                            <div id="dataPointsLabelsY">X2</div>
+                            <div id="dataPointsLabelsZ">Y</div>
+                            <div id="dataPointsLabelsRes">res</div>
+                            <div id="dataPointsLabelsRes2">res<sup>2</sup></div>
+                        </div>
+                        <div id="dataPointsAdd">
+                            <div id="dataPointsAddField">
+                                <input id="dataPointsAddFieldX" value="5" type="number"
+                                onKeyUp="if(this.value>700){this.value='700';}else if(this.value<0){this.value='0';}"></input>
+                                <input id="dataPointsAddFieldY" value="5" type="number"
+                                onKeyUp="if(this.value>700){this.value='700';}else if(this.value<0){this.value='0';}"></input>
+                                <input id="dataPointsAddFieldZ" value="5" type="number"
+                                onKeyUp="if(this.value>700){this.value='700';}else if(this.value<0){this.value='0';}"></input>
+                            </div>
+                            <div id="dataPointsAddButton" onclick="addDataPoint(); draw3DModel()">+</div>
+                        </div>
+                        <div id="dataPointsCurrent">
+                            <!-- Example Data Point
+                            <div id="dataPointsCurrentItem">
+                                <div id="dataPointsCurrentField">
+                                    <div id="dataPointsCurrentFieldX"></div>
+                                    <div id="dataPointsCurrentFieldY"></div>
+                                    <div id="dataPointsCurrentFieldZ"></div>
+                                    <div id="dataPointsCurrentFieldRes"></div>
+                                    <div id="dataPointsCurrentFieldRes2"></div>
+                                </div>
+                                <div id="dataPointsRemoveButton" onclick="removeDataPoint()">x</div>
+                            </div>
+                            -->
+                        </div>
+                        <div id="dataPointsTotal">
+                            <div id="dataPointsTotalField">
+                                <div id="dataPointsTotalFieldRes">Ʃ</div>
+                                <div id="dataPointsTotalFieldRes2">0.00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>                
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/index.js"></script>
+  </body>
+</html>
