@@ -1,4 +1,4 @@
-# Dependencies
+## Dependencies
 
 The application is dependant on libraries included in the application. Plotly, D3 & Numeric. As these libraries are all local it is highly unlikely that they will within a short time need maintainance. 
 
@@ -10,13 +10,13 @@ Otherwise the application only has a dependency on the functionality of modern w
 <script src="js/numeric-1.2.6.min.js"></script>
 ```
 
-# Code Structure
+## Code Structure
 
 All the code relating to application function is located inside the index.js file inside the js folder. HTML only initiates the js functions and CSS provides styling to the HTML elements.
 
 Code inside the index.js file is mainly divided into functions related to the data points, the regression surface and the model container. This documentation only covers the index.js and index.html file.
 
-# Data Points
+## Data Points
 
 All datapoints are managed inside an object array and each time a new data point is added or removed the array is modified.
 
@@ -69,7 +69,7 @@ function printDataPointsArray(){
 }
 ```
 
-# 3D Model & Regression Plane
+## 3D Model & Regression Plane
 
 The 3D model consits of a plotly.js model made in javascript. The size of the model is entirely determined by the size of the regression plane inside it. The size of the regression plane is determined by the location of the data points. The model has a minimum x and y value of 0-10 but streches to encompass all datapoints and maintain an equal x and z max value.
 

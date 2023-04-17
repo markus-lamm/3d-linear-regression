@@ -1,4 +1,4 @@
-# 3D Linear Regression v1.0
+# 3D Linear Regression v1.0.1
 
 This application is made to display and calculate a 3D Linear Regression model. It uses local html, css and js files. The application is run locally with a browser and all dependencies are local.
 
@@ -10,11 +10,11 @@ Further instructions are available inside the application under the "instruction
 
 ![Example Image](./docs/appImage.png)
 
-# Startup
+## Startup
 
 The application is run entirely locally and you only need access to a browser. Double click on the "index.html" file to start the application. If this however opens a text editor or similar application choose instead the "Open with" option when right-clicking on the "index.html" file and select a browser from the list.
 
-# Limitations
+## Limitations
 
 The data points cannot exceed 700,700,700 on the different axis (x1, x2, y). This is because the application struggles to present values larger than this as the application must calculate and place each individual spot coordinate in the regression plane. 
 
